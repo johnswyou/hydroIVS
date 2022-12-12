@@ -1,12 +1,13 @@
 Package: hydroIVS
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Title: Several Innput Variable Selection Methods for Forecasting Research in Water Resources
+Version: 0.1.0.9000
+Authors@R: c(
+    person("John", "Quilty", email = "john.quilty@uwaterloo.ca", role = c("aut")),
+    person("Jan", "Adamowski", email = "jan.adamowski@mcgill.ca", role = c("aut")),
+    person("John", "You", email = "johnswyou@gmail.com", role = c("aut", "cre"))
+    )
+Description: Implements various input variable selection methods for machine learning applications.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
