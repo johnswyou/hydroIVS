@@ -55,13 +55,13 @@ colnames(X) <- paste0("X", 1:100)
 
 ivsIOData(y, X, ivsm = "pcis_bic")
 #> $sel_inputs
-#> [1] 9
+#> [1] 44
 #> 
 #> $names_sel_inputs
-#> [1] "X9"
+#> [1] "X44"
 #> 
 #> $scores
-#> [1] 0.0007741
+#> [1] 0.0004411
 ```
 
 ## References
@@ -71,3 +71,8 @@ Bootstrap rank‐ordered conditional mutual information (BROCMI): A
 nonlinear input variable selection method for Water Resources Modeling.
 Water Resources Research, 52(3), 2299–2326.
 <https://doi.org/10.1002/2015wr016959>
+
+Galelli S., Humphrey G.B., Maier H.R., Castelletti A., Dandy G.C. and
+Gibbs M.S. (2014) An evaluation framework for input variable selection
+algorithms for environmental data-driven models, Environmental Modelling
+and Software, 62, 33-51, DOI: 10.1016/j.envsoft.2014.08.015.
