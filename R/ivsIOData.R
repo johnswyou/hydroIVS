@@ -1,38 +1,51 @@
-# This function performs input variable selection for a given input-output
-# dataset.
-#
-# Input(s):
-# @param y - target [N x 1]
-# @param x - inputs [N x D]
-# @param ivsm - input variable selection (IVS) method [string:'none','boruta','rrf','ea_cmi_htc','ea_cmi_tol','knn_cmi_tol','knn_cmi_bi_tol',pmis_bic','pcis_bic']
-# @param ivs_param - parameters for input variable selection method
-#                    'rrf': ivs_param[1] = regularization parameter [0 < scalar <= 1]
-#                           ivs_param[2] = ntrees [integer > 1)] usually between 128 and 1000
-#                    'ea_cmi': ivs_param[1] =  Hampel test criterion threshold [scalar > 0]
-#                    'ea_cmi_tol': ivs_param[1] = CMI/MI threshold [0 < scalar <= 1]
-#                                  ivs_param[2] = no. of nearest neighbours [1 < integer < sample size-1]
-#                    'knn_cmi_tol': ivs_param[1] = CMI/MI threshold [0 < scalar <= 1]
-#                                   ivs_param[2] = no. of nearest neighbours [1 < integer < sample size-1]
-#
-# Output:
-# list that contains indices and names of selected input variables
-#
-# Reference(s):
-#
-# Quilty, J., J. Adamowski, B. Khalil, and M. Rathinasamy (2016), Bootstrap rank-
-# ordered conditional mutual information (broCMI): A nonlinear input variable
-# selection method for water resources modeling, Water Resour. Res., 52,
-# doi:10.1002/2015WR016959.
-#
-# Quilty, J., and J. Adamowski (2018), Addressing the incorrect usage of wavelet-
-# based hydrological and water resources forecasting models for real-world
-# applications with best practices and a new forecasting framework, J. Hydrol.,
-# doi:10.1016/j.jhydrol.2018.05.003.
-#
-#  Author:
-#
-#  John Quilty
-#
+#' Perform Input Variable Selection
+#'
+#' This function performs input variable selection for a given input-output
+#' dataset.
+#'
+#' @param y target vector \[N x 1\]
+#' @param x input matrix \[N x D\]
+#' @param ivsm input variable selection (IVS) method \[string:'none','boruta','rrf','ea_cmi_htc','ea_cmi_tol','knn_cmi_tol','knn_cmi_bi_tol',pmis_bic','pcis_bic'\]
+#' @param ivs_param parameters for input variable selection method
+#' \itemize{
+#' \item rrf
+#' \itemize{
+#' \item ivs_param\[1\] = regularization parameter \[0 < scalar <= 1\]
+#' \item ivs_param\[2\] = ntrees \[integer > 1)\] usually between 128 and 1000
+#' }
+#' \item ea_cmi
+#' \itemize{
+#' \item ivs_param\[1\] =  Hampel test criterion threshold \[scalar > 0\]
+#' }
+#' \item ea_cmi_tol
+#' \itemize{
+#' \item ivs_param\[1\] = CMI/MI threshold \[0 < scalar <= 1\]
+#' \item ivs_param\[2\] = no. of nearest neighbours \[1 < integer < sample size-1\]
+#' }
+#' \item knn_cmi_tol
+#' \itemize{
+#' \item ivs_param\[1\] = CMI/MI threshold \[0 < scalar <= 1\]
+#' \item ivs_param\[2\] = no. of nearest neighbours \[1 < integer < sample size-1\]
+#' }
+#' }
+#'
+#' @return list that contains indices and names of selected input variables
+#'
+#' @references
+#'
+#' Quilty, J., J. Adamowski, B. Khalil, and M. Rathinasamy (2016), Bootstrap rank-
+#' ordered conditional mutual information (broCMI): A nonlinear input variable
+#' selection method for water resources modeling, Water Resour. Res., 52,
+#' doi:10.1002/2015WR016959.
+#'
+#' Quilty, J., and J. Adamowski (2018), Addressing the incorrect usage of wavelet-
+#' based hydrological and water resources forecasting models for real-world
+#' applications with best practices and a new forecasting framework, J. Hydrol.,
+#' doi:10.1016/j.jhydrol.2018.05.003.
+#'
+#' @author John Quilty
+#' @export
+
 #  Date Created:
 #
 #  Sep. 10, 2018
@@ -41,9 +54,6 @@
 #
 #  Sep. 26, 2018 - Included 'ntrees' in 'rrf' as a specificable parameter
 #  Oct. 29, 2018 - Included the 'score' (importance) of each selected feature
-#
-#  START...
-#
 
 ivsIOData <- function(y,x,ivsm,ivs_param){
 
