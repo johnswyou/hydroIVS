@@ -55,13 +55,13 @@ colnames(X) <- paste0("X", 1:100)
 
 ivsIOData(y, X, ivsm = "pcis_bic")
 #> $sel_inputs
-#> [1] 78
+#> [1] 25
 #> 
 #> $names_sel_inputs
-#> [1] "X78"
+#> [1] "X25"
 #> 
 #> $scores
-#> [1] 0.001198
+#> [1] 0.0008701
 ```
 
 ## References
@@ -80,3 +80,8 @@ and Software, 62, 33-51, DOI: 10.1016/j.envsoft.2014.08.015.
 Kursa, M. B., & Rudnicki, W. R. (2010). Feature Selection with the
 Boruta Package. Journal of Statistical Software, 36(11), 1–13.
 <https://doi.org/10.18637/jss.v036.i11>
+
+H. Deng(2013). Guided Random Forest in the RRF Package. arXiv:1306.0237.
+
+H. Deng and G. Runger (2012). Feature Selection via Regularized Trees.
+The 2012 International Joint Conference on Neural Networks (IJCNN).

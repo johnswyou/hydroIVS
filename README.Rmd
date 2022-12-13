@@ -61,3 +61,8 @@ Quilty, J., Adamowski, J., Khalil, B., &amp; Rathinasamy, M. (2016). Bootstrap r
 Galelli S., Humphrey G.B., Maier H.R., Castelletti A., Dandy G.C. and Gibbs M.S. (2014) An evaluation framework for input variable selection algorithms for environmental data-driven models, Environmental Modelling and Software, 62, 33-51, DOI: 10.1016/j.envsoft.2014.08.015.
 
 Kursa, M. B., & Rudnicki, W. R. (2010). Feature Selection with the Boruta Package. Journal of Statistical Software, 36(11), 1–13. https://doi.org/10.18637/jss.v036.i11
+
+H. Deng(2013). Guided Random Forest in the RRF Package.
+arXiv:1306.0237.
+
+H. Deng and G. Runger (2012). Feature Selection via Regularized Trees. The 2012 International Joint Conference on Neural Networks (IJCNN).
