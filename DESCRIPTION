@@ -15,3 +15,5 @@ Imports:
     RANN,
     Boruta,
     RRF
+URL: https://github.com/johnswyou/hydroIVS
+BugReports: https://github.com/johnswyou/hydroIVS/issues
