@@ -55,11 +55,19 @@ colnames(X) <- paste0("X", 1:100)
 
 ivsIOData(y, X, ivsm = "pcis_bic")
 #> $sel_inputs
-#> [1] 92
+#> [1] 57
 #> 
 #> $names_sel_inputs
-#> [1] "X92"
+#> [1] "X57"
 #> 
 #> $scores
-#> [1] 0.0007389
+#> [1] 0.0007253
 ```
+
+## References
+
+Quilty, J., Adamowski, J., Khalil, B., & Rathinasamy, M. (2016).
+Bootstrap rank‐ordered conditional mutual information (BROCMI): A
+nonlinear input variable selection method for Water Resources Modeling.
+Water Resources Research, 52(3), 2299–2326.
+<https://doi.org/10.1002/2015wr016959>
