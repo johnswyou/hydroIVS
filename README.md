@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# hydroIVS
+# hydroIVS <img src="man/figures/logo.png" align="right" height="139" />
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -55,13 +55,13 @@ colnames(X) <- paste0("X", 1:100)
 
 ivsIOData(y, X, ivsm = "pcis_bic")
 #> $sel_inputs
-#> [1] 57
+#> [1] 9
 #> 
 #> $names_sel_inputs
-#> [1] "X57"
+#> [1] "X9"
 #> 
 #> $scores
-#> [1] 0.0007253
+#> [1] 0.0007741
 ```
 
 ## References
