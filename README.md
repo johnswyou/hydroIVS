@@ -55,13 +55,13 @@ colnames(X) <- paste0("X", 1:100)
 
 ivsIOData(y, X, ivsm = "pcis_bic")
 #> $sel_inputs
-#> [1] 44
+#> [1] 78
 #> 
 #> $names_sel_inputs
-#> [1] "X44"
+#> [1] "X78"
 #> 
 #> $scores
-#> [1] 0.0004411
+#> [1] 0.001198
 ```
 
 ## References
@@ -76,3 +76,7 @@ Galelli S., Humphrey G.B., Maier H.R., Castelletti A., Dandy G.C. and
 Gibbs M.S. (2014) An evaluation framework for input variable selection
 algorithms for environmental data-driven models, Environmental Modelling
 and Software, 62, 33-51, DOI: 10.1016/j.envsoft.2014.08.015.
+
+Kursa, M. B., & Rudnicki, W. R. (2010). Feature Selection with the
+Boruta Package. Journal of Statistical Software, 36(11), 1–13.
+<https://doi.org/10.18637/jss.v036.i11>
