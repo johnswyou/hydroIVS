@@ -66,13 +66,13 @@ colnames(X) <- paste0("X", 1:40)
 # Bayesian Information Criterion (BIC) used to identify significant inputs.
 ivsIOData(y, X, ivsm = "pcis_bic")
 #> $sel_inputs
-#> [1] 5
+#> [1] 4
 #> 
 #> $names_sel_inputs
-#> [1] "X5"
+#> [1] "X4"
 #> 
 #> $scores
-#> [1] 0.005146
+#> [1] 0.001954
 
 # ********************************************************
 # Edgeworth Approximation (EA) based Shannon Conditional 
@@ -85,21 +85,22 @@ ivsIOData(y, X, ivsm = "ea_cmi_tol", ivs_param = 0.1)
 #> 
 #> EA_CMI_TOL ROUTINE COMPLETED
 #>   Input      CMI       MI CMI.MI.ratio CMIevals CPUtime ElapsedTime
-#> 1     8 0.004716 0.004716      1.00000       40    0.00        0.10
-#> 2     5 0.004476 0.009191      0.48690       79    0.00        0.21
-#> 3    23 0.004453 0.013640      0.32640      117    0.00        0.38
-#> 4    37 0.003249 0.016890      0.19230      154    0.08        0.58
-#> 5    30 0.002877 0.019770      0.14550      190    0.14        0.85
-#> 6    10 0.002701 0.022470      0.12020      225    0.23        1.19
-#> 7    36 0.002456 0.024930      0.09854      259    0.31        1.60
+#> 1     4 0.004433 0.004433      1.00000       40    0.03        0.11
+#> 2    11 0.004232 0.008664      0.48840       79    0.03        0.22
+#> 3    20 0.003839 0.012500      0.30710      117    0.08        0.39
+#> 4     5 0.003476 0.015980      0.21750      154    0.14        0.63
+#> 5    31 0.003353 0.019330      0.17340      190    0.15        0.93
+#> 6    21 0.002631 0.021960      0.11980      225    0.22        1.30
+#> 7    30 0.002639 0.024600      0.10730      259    0.31        1.74
+#> 8     7 0.002141 0.026740      0.08005      292    0.37        2.29
 #> $sel_inputs
-#> [1]  8  5 23 37 30 10
+#> [1]  4 11 20  5 31 21 30
 #> 
 #> $names_sel_inputs
-#> [1] "X8"  "X5"  "X23" "X37" "X30" "X10"
+#> [1] "X4"  "X11" "X20" "X5"  "X31" "X21" "X30"
 #> 
 #> $scores
-#> [1] 0.004716 0.004476 0.004453 0.003249 0.002877 0.002701
+#> [1] 0.004433 0.004232 0.003839 0.003476 0.003353 0.002631 0.002639
 
 # ********************************************************
 # K nearest neighbour (KNN) based Shannon Conditional 
@@ -110,7 +111,7 @@ ivsIOData(y, X, ivsm = "ea_cmi_tol", ivs_param = 0.1)
 # used to identify significant inputs.
 
 # ivs_param[2] indicates number of nearest neighbors
-ivsIOData(y, X, ivsm = "knn_cmi_tol", ivs_param = c(0.1, 5))
+ivsIOData(y, X, ivsm = "knn_cmi_tol", ivs_param = c(0.1, 25))
 #> 
 #> KNN_CMI_TOL ROUTINE COMPLETED
 #> NULL

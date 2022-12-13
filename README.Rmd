@@ -82,7 +82,7 @@ ivsIOData(y, X, ivsm = "ea_cmi_tol", ivs_param = 0.1)
 # used to identify significant inputs.
 
 # ivs_param[2] indicates number of nearest neighbors
-ivsIOData(y, X, ivsm = "knn_cmi_tol", ivs_param = c(0.1, 5))
+ivsIOData(y, X, ivsm = "knn_cmi_tol", ivs_param = c(0.1, 25))
 ```
 
 ## References
