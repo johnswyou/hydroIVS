@@ -51,13 +51,15 @@ library(hydroIVS)
 X <- matrix(rnorm(1e4*100), ncol=100)
 y <- rnorm(1e4)
 
+colnames(X) <- paste0("X", 1:100)
+
 ivsIOData(y, X, ivsm = "pcis_bic")
 #> $sel_inputs
-#> [1] 75
+#> [1] 92
 #> 
 #> $names_sel_inputs
-#> NULL
+#> [1] "X92"
 #> 
 #> $scores
-#> [1] 0.000549
+#> [1] 0.0007389
 ```

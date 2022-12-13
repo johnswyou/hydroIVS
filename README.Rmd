@@ -49,6 +49,8 @@ library(hydroIVS)
 X <- matrix(rnorm(1e4*100), ncol=100)
 y <- rnorm(1e4)
 
+colnames(X) <- paste0("X", 1:100)
+
 ivsIOData(y, X, ivsm = "pcis_bic")
 ```
 
