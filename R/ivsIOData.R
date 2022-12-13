@@ -20,7 +20,6 @@
 #' \item ea_cmi_tol
 #' \itemize{
 #' \item ivs_param\[1\] = CMI/MI threshold \[0 < scalar <= 1\]
-#' \item ivs_param\[2\] = no. of nearest neighbours \[1 < integer < sample size-1\]
 #' }
 #' \item knn_cmi_tol
 #' \itemize{
