@@ -52,6 +52,7 @@ set.seed(1648)
 # Toy data set with 40 input features
 vcovar <- matrix(rnorm(41^2), ncol=41)
 vcovar <- t(vcovar) %*% vcovar
+vcovar <- vcovar/41
 mu_vec <- rnorm(41)
 X <- mvrnorm(n=1e3, mu=mu_vec, Sigma=vcovar)
 X <- X[, 2:41]

@@ -54,6 +54,7 @@ set.seed(1648)
 # Toy data set with 40 input features
 vcovar <- matrix(rnorm(41^2), ncol=41)
 vcovar <- t(vcovar) %*% vcovar
+vcovar <- vcovar/41
 mu_vec <- rnorm(41)
 X <- mvrnorm(n=1e3, mu=mu_vec, Sigma=vcovar)
 X <- X[, 2:41]
@@ -69,13 +70,13 @@ colnames(X) <- paste0("X", 1:40)
 # Bayesian Information Criterion (BIC) used to identify significant inputs.
 ivsIOData(y, X, ivsm = "pcis_bic")
 #> $sel_inputs
-#> [1] 1
+#> [1]  1 22 25
 #> 
 #> $names_sel_inputs
-#> [1] "X1"
+#> [1] "X1"  "X22" "X25"
 #> 
 #> $scores
-#> [1] 1
+#> [1] 1.000000 0.005801 0.004483
 
 # ********************************************************
 # Edgeworth Approximation (EA) based Shannon Conditional 
@@ -112,8 +113,8 @@ ivsIOData(y, X, ivsm = "ea_cmi_tol", ivs_param = 0.1)
 ivsIOData(y, X, ivsm = "knn_cmi_tol", ivs_param = c(0.1, 5))
 #> 
 #> KNN_CMI_TOL ROUTINE COMPLETED
-#>   Input   CMI    MI CMI.MI.ratio CMIevals CPUtime ElapsedTime
-#> 1     1 4.401 4.401            1       40     0.2       25.28
+#>   Input  CMI   MI CMI.MI.ratio CMIevals CPUtime ElapsedTime
+#> 1     1 4.41 4.41            1       40    0.32       25.44
 #> $sel_inputs
 #> [1] 1
 #> 
@@ -121,7 +122,7 @@ ivsIOData(y, X, ivsm = "knn_cmi_tol", ivs_param = c(0.1, 5))
 #> [1] "X1"
 #> 
 #> $scores
-#> [1] 4.401
+#> [1] 4.41
 ```
 
 ## References
