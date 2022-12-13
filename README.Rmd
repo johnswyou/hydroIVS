@@ -47,12 +47,15 @@ Here is a basic example:
 library(hydroIVS)
 library(MASS)
 
+set.seed(1648)
+
 # Toy data set with 40 input features
-vcovar <- matrix(rnorm(40^2), ncol=40)
+vcovar <- matrix(rnorm(41^2), ncol=41)
 vcovar <- t(vcovar) %*% vcovar
-mu_vec <- rnorm(40)
+mu_vec <- rnorm(41)
 X <- mvrnorm(n=1e3, mu=mu_vec, Sigma=vcovar)
-y <- rnorm(1e3)
+X <- X[, 2:41]
+y <- c(X[, 1])
 
 # Give input features basic names
 colnames(X) <- paste0("X", 1:40)
@@ -82,7 +85,7 @@ ivsIOData(y, X, ivsm = "ea_cmi_tol", ivs_param = 0.1)
 # used to identify significant inputs.
 
 # ivs_param[2] indicates number of nearest neighbors
-ivsIOData(y, X, ivsm = "knn_cmi_tol", ivs_param = c(0.1, 25))
+ivsIOData(y, X, ivsm = "knn_cmi_tol", ivs_param = c(0.1, 5))
 ```
 
 ## References

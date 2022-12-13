@@ -49,12 +49,15 @@ Here is a basic example:
 library(hydroIVS)
 library(MASS)
 
+set.seed(1648)
+
 # Toy data set with 40 input features
-vcovar <- matrix(rnorm(40^2), ncol=40)
+vcovar <- matrix(rnorm(41^2), ncol=41)
 vcovar <- t(vcovar) %*% vcovar
-mu_vec <- rnorm(40)
+mu_vec <- rnorm(41)
 X <- mvrnorm(n=1e3, mu=mu_vec, Sigma=vcovar)
-y <- rnorm(1e3)
+X <- X[, 2:41]
+y <- c(X[, 1])
 
 # Give input features basic names
 colnames(X) <- paste0("X", 1:40)
@@ -66,13 +69,13 @@ colnames(X) <- paste0("X", 1:40)
 # Bayesian Information Criterion (BIC) used to identify significant inputs.
 ivsIOData(y, X, ivsm = "pcis_bic")
 #> $sel_inputs
-#> [1] 4
+#> [1] 1
 #> 
 #> $names_sel_inputs
-#> [1] "X4"
+#> [1] "X1"
 #> 
 #> $scores
-#> [1] 0.001954
+#> [1] 1
 
 # ********************************************************
 # Edgeworth Approximation (EA) based Shannon Conditional 
@@ -82,25 +85,20 @@ ivsIOData(y, X, ivsm = "pcis_bic")
 # ivs_param indicates ratio of CMI over Mutual Information (MI) 
 # used to identify significant inputs.
 ivsIOData(y, X, ivsm = "ea_cmi_tol", ivs_param = 0.1)
+#> Warning in max(CMI, na.rm = TRUE): no non-missing arguments to max; returning
+#> -Inf
 #> 
 #> EA_CMI_TOL ROUTINE COMPLETED
-#>   Input      CMI       MI CMI.MI.ratio CMIevals CPUtime ElapsedTime
-#> 1     4 0.004433 0.004433      1.00000       40    0.03        0.11
-#> 2    11 0.004232 0.008664      0.48840       79    0.03        0.22
-#> 3    20 0.003839 0.012500      0.30710      117    0.08        0.39
-#> 4     5 0.003476 0.015980      0.21750      154    0.14        0.63
-#> 5    31 0.003353 0.019330      0.17340      190    0.15        0.93
-#> 6    21 0.002631 0.021960      0.11980      225    0.22        1.30
-#> 7    30 0.002639 0.024600      0.10730      259    0.31        1.74
-#> 8     7 0.002141 0.026740      0.08005      292    0.37        2.29
+#>   Input CMI  MI CMI.MI.ratio CMIevals CPUtime ElapsedTime
+#> 1     1 Inf Inf          NaN       40       0        0.09
 #> $sel_inputs
-#> [1]  4 11 20  5 31 21 30
+#> [1] 1
 #> 
 #> $names_sel_inputs
-#> [1] "X4"  "X11" "X20" "X5"  "X31" "X21" "X30"
+#> [1] "X1"
 #> 
 #> $scores
-#> [1] 0.004433 0.004232 0.003839 0.003476 0.003353 0.002631 0.002639
+#> [1] Inf
 
 # ********************************************************
 # K nearest neighbour (KNN) based Shannon Conditional 
@@ -111,18 +109,19 @@ ivsIOData(y, X, ivsm = "ea_cmi_tol", ivs_param = 0.1)
 # used to identify significant inputs.
 
 # ivs_param[2] indicates number of nearest neighbors
-ivsIOData(y, X, ivsm = "knn_cmi_tol", ivs_param = c(0.1, 25))
+ivsIOData(y, X, ivsm = "knn_cmi_tol", ivs_param = c(0.1, 5))
 #> 
 #> KNN_CMI_TOL ROUTINE COMPLETED
-#> NULL
+#>   Input   CMI    MI CMI.MI.ratio CMIevals CPUtime ElapsedTime
+#> 1     1 4.401 4.401            1       40     0.2       25.28
 #> $sel_inputs
-#> NULL
+#> [1] 1
 #> 
 #> $names_sel_inputs
-#> character(0)
+#> [1] "X1"
 #> 
 #> $scores
-#> NULL
+#> [1] 4.401
 ```
 
 ## References
