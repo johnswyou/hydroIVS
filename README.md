@@ -47,40 +47,22 @@ Here is a basic example:
 
 ``` r
 library(hydroIVS)
-# library(MASS)
+library(wooldridge)
 
 set.seed(1648)
-
-# Toy data set with 40 input features
-
-# NOTE: I generated my covariance matrix below based on Daryl's answer in
-# https://math.stackexchange.com/questions/357980/how-to-generate-random-symmetric-positive-definite-matrices-using-matlab
-# vcovar <- matrix(rnorm(41^2), ncol=41)
-# vcovar <- 0.5*(t(vcovar) + vcovar) + 41*diag(nrow=41)
-# mu_vec <- 41*rnorm(41)
-# X <- mvrnorm(n=1e3, mu=mu_vec, Sigma=vcovar)
-# X <- X[, 2:41]
-# y <- c(X[, 1])
-
-# Give input features basic names
-# colnames(X) <- paste0("X", 1:40)
-
-library(wooldridge)
 
 data("hprice3")
 
 hprice2$lprice <- NULL
-hprice2$lnox <- NULL
-hprice2$lproptax <- NULL
 
 head(hprice2)
-#>   price crime  nox rooms dist radial proptax stratio lowstat
-#> 1 24000 0.006 5.38  6.57 4.09      1    29.6    15.3    4.98
-#> 2 21599 0.027 4.69  6.42 4.97      2    24.2    17.8    9.14
-#> 3 34700 0.027 4.69  7.18 4.97      2    24.2    17.8    4.03
-#> 4 33400 0.032 4.58  7.00 6.06      3    22.2    18.7    2.94
-#> 5 36199 0.069 4.58  7.15 6.06      3    22.2    18.7    5.33
-#> 6 28701 0.030 4.58  6.43 6.06      3    22.2    18.7    5.21
+#>   price crime  nox rooms dist radial proptax stratio lowstat     lnox lproptax
+#> 1 24000 0.006 5.38  6.57 4.09      1    29.6    15.3    4.98 1.682688 5.690360
+#> 2 21599 0.027 4.69  6.42 4.97      2    24.2    17.8    9.14 1.545433 5.488938
+#> 3 34700 0.027 4.69  7.18 4.97      2    24.2    17.8    4.03 1.545433 5.488938
+#> 4 33400 0.032 4.58  7.00 6.06      3    22.2    18.7    2.94 1.521699 5.402678
+#> 5 36199 0.069 4.58  7.15 6.06      3    22.2    18.7    5.33 1.521699 5.402678
+#> 6 28701 0.030 4.58  6.43 6.06      3    22.2    18.7    5.21 1.521699 5.402678
 
 y <- hprice2$price
 X <- hprice2[, 2:ncol(hprice2)]
@@ -93,13 +75,14 @@ X <- as.matrix(X)
 # Bayesian Information Criterion (BIC) used to identify significant inputs.
 ivsIOData(y, X, ivsm = "pcis_bic")
 #> $sel_inputs
-#> [1] 8 3 7 4 2 1 5
+#> [1]  8  3  7  4  2  1  5 10
 #> 
 #> $names_sel_inputs
-#> [1] "lowstat" "rooms"   "stratio" "dist"    "nox"     "crime"   "radial" 
+#> [1] "lowstat"  "rooms"    "stratio"  "dist"     "nox"      "crime"    "radial"  
+#> [8] "lproptax"
 #> 
 #> $scores
-#> [1] 0.52760 0.21560 0.11020 0.03114 0.06044 0.01381 0.01370
+#> [1] 0.52760 0.21560 0.11020 0.03114 0.06044 0.01381 0.01370 0.03432
 
 # ********************************************************
 # Edgeworth Approximation (EA) based Shannon Conditional 
@@ -112,10 +95,10 @@ ivsIOData(y, X, ivsm = "ea_cmi_tol", ivs_param = 0.1)
 #> 
 #> EA_CMI_TOL ROUTINE COMPLETED
 #>   Input    CMI    MI CMI.MI.ratio CMIevals CPUtime ElapsedTime
-#> 1     3 0.6670 0.667       1.0000        8    0.00        0.03
-#> 2     1 0.4288 1.096       0.3913       15    0.00        0.05
-#> 3     8 0.1540 1.250       0.1233       21    0.02        0.08
-#> 4     7 0.1275 1.377       0.0926       26    0.02        0.11
+#> 1     3 0.6670 0.667       1.0000       10       0        0.05
+#> 2     1 0.4288 1.096       0.3913       19       0        0.06
+#> 3     8 0.1540 1.250       0.1233       27       0        0.10
+#> 4     7 0.1275 1.377       0.0926       34       0        0.14
 #> $sel_inputs
 #> [1] 3 1 8
 #> 
@@ -138,8 +121,8 @@ ivsIOData(y, X, ivsm = "knn_cmi_tol", ivs_param = c(0.1, 5))
 #> 
 #> KNN_CMI_TOL ROUTINE COMPLETED
 #>   Input      CMI     MI CMI.MI.ratio CMIevals CPUtime ElapsedTime
-#> 1     8 0.422900 0.4229      1.00000        8    0.11        1.44
-#> 2     3 0.008007 0.4439      0.01804       15    0.25        4.06
+#> 1     8 0.422900 0.4229      1.00000       10    0.13        1.78
+#> 2     3 0.008007 0.4439      0.01804       19    0.27        5.16
 #> $sel_inputs
 #> [1] 8
 #> 
