@@ -55,13 +55,13 @@ colnames(X) <- paste0("X", 1:100)
 
 ivsIOData(y, X, ivsm = "pcis_bic")
 #> $sel_inputs
-#> [1] 25
+#> [1] 5
 #> 
 #> $names_sel_inputs
-#> [1] "X25"
+#> [1] "X5"
 #> 
 #> $scores
-#> [1] 0.0008701
+#> [1] 0.0005388
 ```
 
 ## References
@@ -85,3 +85,21 @@ H. Deng(2013). Guided Random Forest in the RRF Package. arXiv:1306.0237.
 
 H. Deng and G. Runger (2012). Feature Selection via Regularized Trees.
 The 2012 International Joint Conference on Neural Networks (IJCNN).
+
+Kugiumtzis, D. (2013), Direct-coupling measure for nonuniform embedding,
+Physical Review E, 87, 062918.
+
+Tsimpiris, A., I. Vlachos, and D. Kugiumtzis (2012), Nearest neighbour
+estimation of conditional mutual information in feature selection,
+Expert Syst. Appl., 39, 697-708.
+
+Marc Van Hulle. Edgeworth approximation of multivariate differential
+entropy. Neural Computation, 17(9), 1903-1910, 2005.
+
+I. Vlachos, D. Kugiumtzis, “Non-uniform state space reconstruction and
+coupling detection”, Physical Review E, Vol 82, 016207, 2010
+
+May, R. J., H. R. Maier, G. C. Dandy, and T. Fernando (2008a),
+Non-linear variable selection for artificial neural networks using
+partial mutual information, Environ. Modell. Software, 23(10-11),
+1312-1326.
