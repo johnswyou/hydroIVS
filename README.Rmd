@@ -45,20 +45,37 @@ Here is a basic example:
 
 ```{r example}
 library(hydroIVS)
-library(MASS)
+# library(MASS)
 
 set.seed(1648)
 
 # Toy data set with 40 input features
-vcovar <- matrix(rnorm(41^2), ncol=41)
-vcovar <- 0.5*(t(vcovar) + vcovar) + 41*diag(nrow=41)
-mu_vec <- rnorm(41)
-X <- mvrnorm(n=1e3, mu=mu_vec, Sigma=vcovar)
-X <- X[, 2:41]
-y <- c(X[, 1])
+
+# NOTE: I generated my covariance matrix below based on Daryl's answer in
+# https://math.stackexchange.com/questions/357980/how-to-generate-random-symmetric-positive-definite-matrices-using-matlab
+# vcovar <- matrix(rnorm(41^2), ncol=41)
+# vcovar <- 0.5*(t(vcovar) + vcovar) + 41*diag(nrow=41)
+# mu_vec <- 41*rnorm(41)
+# X <- mvrnorm(n=1e3, mu=mu_vec, Sigma=vcovar)
+# X <- X[, 2:41]
+# y <- c(X[, 1])
 
 # Give input features basic names
-colnames(X) <- paste0("X", 1:40)
+# colnames(X) <- paste0("X", 1:40)
+
+library(wooldridge)
+
+data("hprice3")
+
+hprice2$lprice <- NULL
+hprice2$lnox <- NULL
+hprice2$lproptax <- NULL
+
+head(hprice2)
+
+y <- hprice2$price
+X <- hprice2[, 2:ncol(hprice2)]
+X <- as.matrix(X)
 
 # *******************************************
 # Partial Correlation Input Selection (PCIS)
