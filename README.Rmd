@@ -46,12 +46,28 @@ Here is a basic example:
 ```{r example}
 library(hydroIVS)
 
+# Toy data set with 100 input features
 X <- matrix(rnorm(1e4*100), ncol=100)
 y <- rnorm(1e4)
 
+# Give input features basic names
 colnames(X) <- paste0("X", 1:100)
 
+# *******************************************
+# Partial Correlation Input Selection (PCIS)
+# *******************************************
+
+# Bayesian Information Criterion (BIC) used to identify significant inputs.
 ivsIOData(y, X, ivsm = "pcis_bic")
+
+# ********************************************************
+# Edgeworth Approximation (EA) based Shannon Conditional 
+# Mutual Information (CMI) Input Variable Selection (IVS) 
+# ********************************************************
+
+# ivs_param indicates ratio of CMI over Mutual Information (MI) 
+# used to identify significant inputs.
+ivsIOData(y, X, ivsm = "ea_cmi_tol", ivs_param = 0.1)
 ```
 
 ## References

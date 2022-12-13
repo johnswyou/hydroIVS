@@ -48,20 +48,57 @@ Here is a basic example:
 ``` r
 library(hydroIVS)
 
+# Toy data set with 100 input features
 X <- matrix(rnorm(1e4*100), ncol=100)
 y <- rnorm(1e4)
 
+# Give input features basic names
 colnames(X) <- paste0("X", 1:100)
 
+# *******************************************
+# Partial Correlation Input Selection (PCIS)
+# *******************************************
+
+# Bayesian Information Criterion (BIC) used to identify significant inputs.
 ivsIOData(y, X, ivsm = "pcis_bic")
 #> $sel_inputs
-#> [1] 5
+#> [1] 17
 #> 
 #> $names_sel_inputs
-#> [1] "X5"
+#> [1] "X17"
 #> 
 #> $scores
-#> [1] 0.0005388
+#> [1] 0.0008484
+
+# ********************************************************
+# Edgeworth Approximation (EA) based Shannon Conditional 
+# Mutual Information (CMI) Input Variable Selection (IVS) 
+# ********************************************************
+
+# ivs_param indicates ratio of CMI over Mutual Information (MI) 
+# used to identify significant inputs.
+ivsIOData(y, X, ivsm = "ea_cmi_tol", ivs_param = 0.1)
+#> 
+#> EA_CMI_TOL ROUTINE COMPLETED
+#>   Input       CMI        MI CMI.MI.ratio CMIevals CPUtime ElapsedTime
+#> 1    48 0.0008005 0.0008005       1.0000      100    0.36        0.83
+#> 2    17 0.0005960 0.0013960       0.4268      199    0.77        2.44
+#> 3    79 0.0005430 0.0019390       0.2800      297    1.13        4.49
+#> 4    43 0.0005314 0.0024710       0.2151      394    1.55        7.30
+#> 5    24 0.0005176 0.0029880       0.1732      490    2.19       11.30
+#> 6    70 0.0005028 0.0034910       0.1440      585    3.06       16.60
+#> 7    58 0.0005064 0.0039980       0.1267      679    3.72       23.22
+#> 8     6 0.0004638 0.0044610       0.1040      772    4.78       31.52
+#> 9    37 0.0004305 0.0048920       0.0880      864    5.56       41.41
+#> $sel_inputs
+#> [1] 48 17 79 43 24 70 58  6
+#> 
+#> $names_sel_inputs
+#> [1] "X48" "X17" "X79" "X43" "X24" "X70" "X58" "X6" 
+#> 
+#> $scores
+#> [1] 0.0008005 0.0005960 0.0005430 0.0005314 0.0005176 0.0005028 0.0005064
+#> [8] 0.0004638
 ```
 
 ## References
