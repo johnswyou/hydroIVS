@@ -152,6 +152,10 @@ CMI_KNN <- function(Y,X,Z,k,psi.nn,psi.nsamp) {
 }
 #-------------------------------------------------------------------------------
 KNNcmi_framework_tol <- function(x, y, thresh,k=5, silent = FALSE) {
+
+  # cl <- parallel::makeCluster(parallel::detectCores()-1)
+  # doParallel::registerDoParallel(cl)
+
   # Stepwise KNNcmi_tol
   # Use ratio of CMI over MI to identify significant inputs
 
@@ -288,6 +292,10 @@ KNNcmi_framework_tol <- function(x, y, thresh,k=5, silent = FALSE) {
   # optional write to file (comment/uncomment line below)
   # utils::write.table(scores,"EA_CMI_ivs_results.txt",sep="\t",row.names=FALSE)
 
+  # parallel::stopCluster(cl)
+  # gc()
+  # rm(cl)
+  # foreach::registerDoSEQ()
 
   return(scores[1:(iter.1-2),])  # first column is the set of selected inputs
 }

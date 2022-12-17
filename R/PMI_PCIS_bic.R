@@ -651,7 +651,7 @@ PMI_grnn_framework_bic <- function(x, y, ybin = FALSE, silent = FALSE) {
         row.names = TRUE)
 
   # optional write to file (comment/uncomment line below)
-  utils::write.table(scores,"PMIS_results.txt",sep="\t",row.names=FALSE)
+  # utils::write.table(scores,"PMIS_results.txt",sep="\t",row.names=FALSE)
 
   return(scores[1:(iter.1-2),])  # first column is the set of selected inputs
 }

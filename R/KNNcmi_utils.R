@@ -26,5 +26,17 @@ knn_radius <- function(X,r) {
                                        radius=r[i])$nn.idx > 0)
   }
 
+  # Parallel
+  # `%dopar%` <- foreach::`%dopar%`
+  # npoints_radius <- foreach::foreach(i = 1:np,
+  #                                    .combine="c",
+  #                                    .export = c("X", "np"),
+  #                                    .packages="RANN") %dopar% {
+  #
+  #                                      sum( RANN::nn2(X,t(as.matrix(X[i,])), k=np,
+  #                                                     treetype="kd",searchtype = "radius",
+  #                                                     radius=r[i])$nn.idx > 0)
+  #                                    }
+
   return(npoints_radius)
 }
